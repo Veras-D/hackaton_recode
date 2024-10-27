@@ -52,7 +52,7 @@ nav .container {
 }
 
 .logo {
-  height: 42px;
+  height: 60px;
 }
 nav ul {
   display: flex;
@@ -562,4 +562,8 @@ h2 {
   width: 15px;
   height: 22px;
   margin: 0 10px;
+}
+
+.btn-cadastrar {
+    min-width: 200px;
 }
