@@ -29,7 +29,7 @@
       href="https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -70,8 +70,8 @@
 
       <header>
         <div>
-          <h1 class="slogan">Aló Comunidade</h1>
-          <p style="text-transform: uppercase">
+          <!-- <h1 class="slogan">Aló Comunidade</h1> -->
+          <p style="text-transform: uppercase; font-size: 1.8rem;">
             resgatando vidas através da <span>tecnologia</span> e
             <span>inovação</span>
           </p>
@@ -136,6 +136,7 @@
                 <div class="d-flex flex-column align-items-center">
                   <button
                     class="btn btn-custom btn-light rounded-pill mb-4 px-4"
+                    id="localizarAbrigoBtn"
                   >
                     Localizar Abrigo
                   </button>
@@ -144,7 +145,7 @@
                     <div
                       class="d-flex justify-content-between align-items-center p-2 border-bottom"
                     >
-                      <span>Paróquia General Neto</span>
+                      <span><a href="https://www.google.com/maps/place/29%C2%B021'59.3%22S+51%C2%B026'05.7%22W/@-29.366474,-51.434906,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-29.366474!4d-51.434906?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Paróquia General Neto</a></span>
                       <div class="d-flex align-items-center">
                         <img
                           src="assets/loc_icon.png"
@@ -160,7 +161,7 @@
                     <div
                       class="d-flex justify-content-between align-items-center p-2 border-bottom"
                     >
-                      <span>Abrigo Temporário Sesi</span>
+                      <span><a href="https://www.google.com/maps/place/29%C2%B010'02.3%22S+51%C2%B010'29.9%22W/@-29.167312,-51.174982,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-29.167312!4d-51.174982?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Abrigo Temporário Sesi</a></span>
                       <div class="d-flex align-items-center">
                         <img
                           src="assets/loc_icon.png"
@@ -176,7 +177,7 @@
                     <div
                       class="d-flex justify-content-between align-items-center p-2 border-bottom"
                     >
-                      <span>Abrigo Aparecida</span>
+                      <span><a href="https://www.google.com/maps/search/?api=1&query=-28.850908%2C-51.278921" target="_blank">Abrigo Aparecida</a></span>
                       <div class="d-flex align-items-center">
                         <img
                           src="assets/loc_icon.png"
@@ -192,7 +193,7 @@
                     <div
                       class="d-flex justify-content-between align-items-center p-2 border-bottom"
                     >
-                      <span>Ctg Querência Xucra</span>
+                      <span><a href="https://www.google.com/maps/search/?api=1&query=-28.850908%2C-51.278921" target="_blank">Ctg Querência Xucra</a></span>
                       <div class="d-flex align-items-center">
                         <img
                           src="assets/loc_icon.png"
@@ -208,7 +209,7 @@
                     <div
                       class="d-flex justify-content-between align-items-center p-2 border-bottom"
                     >
-                      <span>Abrigo Jesus's House</span>
+                      <span><a href="https://www.google.com/maps/search/?api=1&query=-29.3236%2C-49.7583" target="_blank">Abrigo Jesus's House</a></span>
                       <div class="d-flex align-items-center">
                         <img
                           src="assets/loc_icon.png"
@@ -224,7 +225,7 @@
                     <div
                       class="d-flex justify-content-between align-items-center p-2 border-bottom"
                     >
-                      <span>Gita - Ginásio De Esportes</span>
+                      <span><a href="https://www.google.com/maps/search/?api=1&query=-29.450734%2C-51.987115" target="_blank">Ginásio De Esportes Montanha</a></span>
                       <div class="d-flex align-items-center">
                         <img
                           src="assets/loc_icon.png"
@@ -240,7 +241,7 @@
                     <div
                       class="d-flex justify-content-between align-items-center p-2"
                     >
-                      <span>Sede Juventude</span>
+                      <span><a href="https://www.google.com/maps/search/?api=1&query=-31.7717781%2C-52.2342088" target="_blank">Sede Juventude</a></span>
                       <div class="d-flex align-items-center">
                         <img
                           src="assets/loc_icon.png"
@@ -257,7 +258,8 @@
               </div>
 
               <!-- Coluna com o mapa -->
-              <div class="col-12 col-lg-5">
+              <div class="col-12 col-lg-5 rounded-4 bg-white p-2 shadow-sm" id="map" style="height: 430px;"></div>
+              <!-- <div class="col-12 col-lg-5">
                 <div class="d-flex justify-content-center">
                   <img
                     src="assets/mapa.png"
@@ -266,7 +268,7 @@
                     style="max-height: 430px; object-fit: contain"
                   />
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </section>
@@ -352,28 +354,30 @@
             receba <span>notícias</span> e <span>informações</span> em primeira
             mão diretamente na sua caixa de entrada!
           </p>
-          <form>
-            <label for="name">Nome</label>
-            <input type="text" id="name" placeholder="Informe seu Nome" />
+          <form onsubmit="enviarFormulario(event)">
+            <label for="name" style="color: #3faa96; font-weight: 650;">Nome</label>
+            <input type="text" id="name" placeholder="Informe seu Nome" required/>
 
-            <label for="email">E-mail</label>
+            <label for="email" style="color: #3faa96; font-weight: 650;">E-mail</label>
             <input
               type="email"
               id="email"
               placeholder="Informe seu e-mail aqui"
+              required
             />
 
-            <label for="phone">Telefone</label>
-            <input type="text" id="phone" placeholder="(xx) xxxxx-xxxx" />
+            <label for="phone" style="color: #3faa96; font-weight: 650;">Telefone</label>
+            <input type="text" id="phone" placeholder="(xx) xxxxx-xxxx" required/>
 
-            <label for="address">Endereço</label>
+            <label for="address" style="color: #3faa96; font-weight: 650;">Endereço</label>
             <input
               type="text"
               id="address"
               placeholder="Informe seu Endereço"
+              required
             />
 
-            <button type="submit">Cadastrar</button>
+            <button class="btn-cadastrar" type="submit">Cadastrar</button>
           </form>
         </div>
       </section>
@@ -394,24 +398,34 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
     <script>
-      const toggleMenuButton = document.querySelector('.toggle-menu')
-      const menuMobile = document.getElementById('menu-mobile')
-
-      toggleMenuButton.addEventListener('click', function () {
-        this.classList.toggle('active')
-        menuMobile.classList.toggle('open')
-        document.body.classList.toggle('overflow-hidden')
-      })
-
-      document.querySelectorAll('#menu-mobile a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          toggleMenuButton.classList.remove('active')
-          menuMobile.classList.remove('open')
-          document.body.classList.remove('overflow-hidden')
-        })
-      })
-    </script>
+      // Inicializa o mapa
+      const map = L.map('map').setView([-29.366474, -51.434906], 6);
+    
+      // Adiciona uma camada de tile (mapa)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+    
+      // Adiciona marcadores para os abrigos
+      const shelters = [
+        { name: "Paróquia General Neto", coords: [-29.366474, -51.434906] },
+        { name: "Abrigo Temporário Sesi", coords: [-29.167312, -51.174982] },
+        { name: "Abrigo Aparecida", coords: [-28.850908, -51.278921] },
+        { name: "Ctg Querência Xucra", coords: [-28.850908, -51.278921] },
+        { name: "Abrigo Jesus's House", coords: [-29.3236, -49.7583] },
+        { name: "Ginásio De Esportes Montanha", coords: [-29.450734, -51.987115] },
+        { name: "Sede Juventude", coords: [-31.7717781, -52.2342088] },
+      ];
+    
+      shelters.forEach(shelter => {
+        L.marker(shelter.coords).addTo(map)
+          .bindPopup(shelter.name)
+          .openPopup();
+      });
+    </script>    
   </body>
 </html>
