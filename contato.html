@@ -88,7 +88,7 @@
         }
 
         .form-group button {
-            background-color: #007BFF;
+            background-color: #3faa96;
             color: #fff;
             border: none;
             padding: 12px 24px;
@@ -102,7 +102,7 @@
         }
 
         .form-group button:hover {
-            background-color: #0056b3;
+            filter: brightness(0.85);
         }
 
         @media (max-width: 768px) {
@@ -130,21 +130,21 @@
             </a>
         </div>
         <form class="contact-form" onsubmit="enviarFormulario(event)">
-            <h2 class="text-center mb-4">Contato</h2>
+            <h2 class="text-center mb-4" style="color: #3faa96;">Contato</h2>
             <div class="form-group">
-                <label for="nome">Nome:</label>
+                <label for="nome" style="color: #3faa96;">Nome:</label>
                 <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
             </div>
             <div class="form-group">
-                <label for="email">E-mail:</label>
+                <label for="email" style="color: #3faa96;">E-mail:</label>
                 <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
             </div>
             <div class="form-group">
-                <label for="assunto">Assunto:</label>
+                <label for="assunto" style="color: #3faa96;">Assunto:</label>
                 <input type="text" id="assunto" name="assunto" placeholder="Assunto da mensagem" required>
             </div>
             <div class="form-group">
-                <label for="mensagem">Mensagem:</label>
+                <label for="mensagem" style="color: #3faa96;">Mensagem:</label>
                 <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
             </div>
             <div class="form-group text-center">
