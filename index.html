@@ -46,8 +46,26 @@
               <li class="button"><a href="#comunicacao"> Novidades </a></li>
             </ul>
           </div>
+          <!-- menu mobile icon -->
+          <button class="toggle-menu">
+            <span></span>
+          </button>
+          <!-- menu mobile icon-->
         </div>
+        <!-- menu mobile -->
+        <div id="menu-mobile" class="">
+          <nav class="main-nav">
+            <ul>
+              <li><a href="#sobre">Sobre a Plataforma</a></li>
+              <li><a href="#abrigos">Os Abrigos</a></li>
+              <li><a href="#comunicacao">Comunicação</a></li>
+              <li><a href="#comunicacao"> Novidades </a></li>
+            </ul>
+          </nav>
+        </div>
+        <!-- menu mobile -->
       </nav>
+
       <header>
         <div>
           <p class="slogan">Aló Comunidade</p>
@@ -143,5 +161,24 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      const toggleMenuButton = document.querySelector('.toggle-menu')
+      const menuMobile = document.getElementById('menu-mobile')
+
+      toggleMenuButton.addEventListener('click', function () {
+        this.classList.toggle('active')
+        menuMobile.classList.toggle('open')
+        document.body.classList.toggle('overflow-hidden')
+      })
+
+      document.querySelectorAll('#menu-mobile a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          toggleMenuButton.classList.remove('active')
+          menuMobile.classList.remove('open')
+          document.body.classList.remove('overflow-hidden')
+        })
+      })
+    </script>
   </body>
 </html>
