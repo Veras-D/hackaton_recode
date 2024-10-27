@@ -8,6 +8,10 @@
     text-decoration: none;
   }
   
+  strong {
+    color: #3FAA96;
+  }
+  
   /* HEADER  */
   .hero {
     background-image: url(assets/hero.png);
