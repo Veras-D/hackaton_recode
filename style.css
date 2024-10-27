@@ -8,6 +8,10 @@
     text-decoration: none;
   }
   
+  a.links:hover {
+    text-decoration: underline;
+  }
+  
   strong {
     color: #3FAA96;
   }
