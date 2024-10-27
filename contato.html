@@ -12,88 +12,152 @@
     <title>Página de Contato</title>
     <style>
         body {
-            background-image: url(assets/hero.png);
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            position: relative;
         }
-        .contact-form {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 400px;
+            height: 100%;
+            background-image: url('assets/hero.png');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7);
+            z-index: -1;
         }
-        .contact-form h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
+
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
         }
+
+        .logo-container {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            max-width: 200px;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
         }
-        .form-group input, .form-group textarea {
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             box-sizing: border-box;
+            font-size: 16px;
         }
+
         .form-group textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 120px;
         }
+
         .form-group button {
             background-color: #007BFF;
             color: #fff;
             border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
+            padding: 12px 24px;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 200px;
         }
+
         .form-group button:hover {
             background-color: #0056b3;
         }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .logo {
+                max-width: 150px;
+            }
+
+            .logo-container {
+                padding: 0 20px;
+            }
+        }
     </style>
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="main-container">
+        <div class="logo-container">
+            <a href="index.html">
+                <img class="logo" src="assets/logo.png" alt="logo" />
+            </a>
+        </div>
+        <form class="contact-form" onsubmit="enviarFormulario(event)">
+            <h2 class="text-center mb-4">Contato</h2>
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+            </div>
+            <div class="form-group">
+                <label for="assunto">Assunto:</label>
+                <input type="text" id="assunto" name="assunto" placeholder="Assunto da mensagem" required>
+            </div>
+            <div class="form-group">
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+
     <script>
         function enviarFormulario(event) {
-            event.preventDefault(); // Impede o envio do formulário para teste
+            event.preventDefault();
             alert('Obrigado por entrar em contato! Sua mensagem foi enviada com sucesso.');
         }
     </script>
-</head>
-<body>
-    <form class="contact-form" onsubmit="enviarFormulario(event)">
-        <h2 class="text-center">Contato</h2>
-        <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
-        </div>
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
-        </div>
-        <div class="form-group">
-            <label for="assunto">Assunto:</label>
-            <input type="text" id="assunto" name="assunto" placeholder="Assunto da mensagem" required>
-        </div>
-        <div class="form-group">
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
-        </div>
-        <div class="form-group text-center">
-            <button type="submit">Enviar</button>
-        </div>
-    </form>
 </body>
 </html>
