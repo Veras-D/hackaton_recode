@@ -326,15 +326,6 @@ header div a:hover {
   .newsletter form input {
     height: 50px;
   }
-
-  .newsletter form button {
-    height: 50px;
-    width: 50px;
-  }
-  .newsletter form button img {
-    height: 20px;
-    width: 20px;
-  }
 }
 
 /* NEWSLETTER END */
