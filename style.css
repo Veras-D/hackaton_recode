@@ -17,6 +17,14 @@ strong {
     color: #3FAA96;
 }
 
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
 
 /* HEADER  */
 .hero {
