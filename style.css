@@ -10,7 +10,7 @@
   
   /* HEADER  */
   .hero {
-    background-image: url(public/hero.png);
+    background-image: url(assets/hero.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
