@@ -3,3 +3,53 @@ azul 254F78
 verde 3FAA96
 texto 102D49
 */
+
+.row + .row {
+    margin-top: 150px;
+}
+
+.btn-custom {
+    background-color: #e7e7e7; 
+    color: #102D49;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 300px;
+    font-size: 14px;
+}
+
+.btn-custom:hover {
+    background-color: #d5d5d5; 
+}
+
+.list-container {
+    background-color: #e7e7e7;
+    border-radius: 30px; 
+    padding: 20px; 
+    max-width: 350px;
+    margin: 20px auto 0; 
+}
+
+.list-item {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #dcdcdc; 
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item span:first-child {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.location-icon {
+    width: 15px;
+    height: 22px;
+    margin: 0 10px;
+}
