@@ -424,7 +424,8 @@
       shelters.forEach(shelter => {
         L.marker(shelter.coords).addTo(map)
           .bindPopup(shelter.name)
-          .openPopup();
+          .openPopup()
+          .closePopup();
       });
     </script>    
   </body>
