@@ -3,9 +3,20 @@ azul 254F78
 verde 3FAA96
 texto 102D49
 */
+body {
+    background-color: #F3F3F3;
+}
+
+main .container {
+    background-color: #F3F3F3;
+}
 
 .row + .row {
-    margin-top: 150px;
+    margin-top: 80px;
+}
+
+h2 {
+    color: #3FAA96;
 }
 
 .btn-custom {
@@ -28,7 +39,7 @@ texto 102D49
     border-radius: 30px; 
     padding: 20px; 
     max-width: 350px;
-    margin: 20px auto 0; 
+    margin: 20px auto 90px; 
 }
 
 .list-item {
