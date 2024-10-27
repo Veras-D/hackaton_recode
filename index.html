@@ -29,7 +29,7 @@
       href="https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -258,7 +258,8 @@
               </div>
 
               <!-- Coluna com o mapa -->
-              <div class="col-12 col-lg-5">
+              <div class="col-12 col-lg-5 rounded-4 bg-white p-2 shadow-sm" id="map" style="height: 430px;"></div>
+              <!-- <div class="col-12 col-lg-5">
                 <div class="d-flex justify-content-center">
                   <img
                     src="assets/mapa.png"
@@ -267,7 +268,7 @@
                     style="max-height: 430px; object-fit: contain"
                   />
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </section>
@@ -397,7 +398,34 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
+    <script>
+      // Inicializa o mapa
+      const map = L.map('map').setView([-29.366474, -51.434906], 6);
+    
+      // Adiciona uma camada de tile (mapa)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+    
+      // Adiciona marcadores para os abrigos
+      const shelters = [
+        { name: "Paróquia General Neto", coords: [-29.366474, -51.434906] },
+        { name: "Abrigo Temporário Sesi", coords: [-29.167312, -51.174982] },
+        { name: "Abrigo Aparecida", coords: [-28.850908, -51.278921] },
+        { name: "Ctg Querência Xucra", coords: [-28.850908, -51.278921] },
+        { name: "Abrigo Jesus's House", coords: [-29.3236, -49.7583] },
+        { name: "Ginásio De Esportes Montanha", coords: [-29.450734, -51.987115] },
+        { name: "Sede Juventude", coords: [-31.7717781, -52.2342088] },
+      ];
+    
+      shelters.forEach(shelter => {
+        L.marker(shelter.coords).addTo(map)
+          .bindPopup(shelter.name)
+          .openPopup();
+      });
+    </script>    
   </body>
 </html>
