@@ -65,9 +65,15 @@
             background-color: #0056b3;
         }
     </style>
+    <script>
+        function enviarFormulario(event) {
+            event.preventDefault(); // Impede o envio do formulário para teste
+            alert('Obrigado por entrar em contato! Sua mensagem foi enviada com sucesso.');
+        }
+    </script>
 </head>
 <body>
-    <form class="contact-form">
+    <form class="contact-form" onsubmit="enviarFormulario(event)">
         <h2 class="text-center">Contato</h2>
         <div class="form-group">
             <label for="nome">Nome:</label>
