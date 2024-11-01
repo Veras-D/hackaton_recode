@@ -99,12 +99,13 @@ nav .button a {
 
 .slogan {
   font-family: Advent Pro;
-  font-size: 68px;
+  font-size: 4rem;
   color: #3faa96;
   font-weight: 700;
   line-height: 81.33px;
   letter-spacing: 0.3em;
   text-align: center;
+  text-transform: uppercase;
 }
 header {
   height: 100%;
